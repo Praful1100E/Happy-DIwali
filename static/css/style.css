@@ -1,0 +1,146 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #000000; /* Dark background for better contrast with fireworks */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.title {
+    font-size: 4em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff; }
+    to { text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 0 0 30px #ff6b6b; }
+}
+
+.message {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    animation: fadeIn 3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fireworks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: explode 2s ease-out infinite;
+}
+
+@keyframes explode {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.rocket {
+    position: absolute;
+    bottom: 0;
+    width: 8px;
+    height: 40px;
+    background: linear-gradient(to top, #ff0000, #ff4500, #ffff00, #00ff00, #0000ff, #ffffff);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 15px #ffff00, 0 0 30px #ff4500;
+    animation: launch 1.8s ease-out forwards;
+}
+
+.rocket::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 0, 0.8), transparent);
+    border-radius: 2px;
+    animation: trail 1.8s ease-out forwards;
+}
+
+@keyframes launch {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-50vh) scale(1.2); opacity: 0.8; }
+    100% { transform: translateY(-90vh) scale(0.5); opacity: 0; }
+}
+
+@keyframes trail {
+    0% { opacity: 1; height: 20px; }
+    100% { opacity: 0; height: 0; }
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: burst 1.5s ease-out forwards;
+}
+
+@keyframes burst {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+
+@keyframes flash {
+    0% { transform: scale(0); opacity: 1; }
+    50% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.lightning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+    animation: lightningStrike 0.5s ease-out forwards;
+    z-index: 0;
+}
+
+@keyframes lightningStrike {
+    0% { opacity: 0; transform: skewX(0deg); }
+    10%, 20%, 30% { opacity: 1; transform: skewX(10deg); }
+    40%, 50%, 60% { opacity: 0.5; transform: skewX(-5deg); }
+    70%, 80% { opacity: 1; transform: skewX(15deg); }
+    90%, 100% { opacity: 0; transform: skewX(0deg); }
+}
